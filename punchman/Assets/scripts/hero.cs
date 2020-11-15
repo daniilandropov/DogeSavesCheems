@@ -41,7 +41,7 @@ public class hero : MonoBehaviour
 
     private void CheckGround()
     {
-        if (Legs.Where(x => x.IsGrounded).Count() > 1)
+        if (Legs.Where(x => x.IsGrounded).Count() > 0)
             isGrounded = true;
         else
             isGrounded = false;
@@ -72,7 +72,7 @@ public class hero : MonoBehaviour
 
     private void Run(float axis)
     {
-        if (isGrounded) State = CharState.Run3;
+        if (isGrounded) State = CharState.Run;
 
         Vector3 direction = transform.right * axis;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
@@ -85,7 +85,5 @@ public enum CharState
 {
     Idle,
     Run,
-    Jump,
-    Run2,
-    Run3,
+    Jump
 }

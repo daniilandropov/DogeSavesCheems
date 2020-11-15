@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 1
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!1 &733630785567679020
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &6281240336640944854
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -489,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &4652245722004435464
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -642,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 1
 --- !u!60 &793366980699967786
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -895,6 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 1
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!1 &3778740801731333305
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &7353074659864800009
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1189,6 +1195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!1 &7456492702078145944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &7951192700056096232
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1450,6 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &2716825690338165560
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1667,6 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!1 &9020513629724224940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!212 &2258173311977300448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1775,6 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itsLeg: 0
+  "\u044D\u0442\u043E\u0422\u0443\u043B\u043E\u0432\u0438\u0449\u0435": 0
 --- !u!60 &760119872613172708
 PolygonCollider2D:
   m_ObjectHideFlags: 0

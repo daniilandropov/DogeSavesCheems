@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\partOfHero.cs" />
     <Compile Include="Assets\scripts\floor.cs" />

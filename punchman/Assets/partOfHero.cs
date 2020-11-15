@@ -10,6 +10,8 @@ public class partOfHero : MonoBehaviour
     /// </summary>
     public bool itsLeg = false;
 
+    public bool этоТуловище = false;
+
     private bool isGrounded = false;
 
     public bool IsGrounded {
