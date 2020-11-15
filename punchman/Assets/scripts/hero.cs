@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.scripts;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,6 +23,11 @@ public class hero : MonoBehaviour
     new private Rigidbody2D rigidbody;
     private Animator animator;
     private SpriteRenderer sprite;
+
+    /// <summary>
+    ///  Блокируем управление на момент удара
+    /// </summary>
+    private bool _controlIsLocked = false;
 
     private void Awake()
     {
@@ -56,13 +63,46 @@ public class hero : MonoBehaviour
 
     private void Update()
     {
+        if (_controlIsLocked)
+            return;
+
         if (isGrounded) State = CharState.Idle;
 
         if (Input.GetButton("Horizontal") || Input.GetAxis("Horizontal") != 0) Run(Input.GetAxis("Horizontal"));
         if (Input.GetButtonDown("Jump"))
             if (isGrounded)
                 Jump(jumpForce);
-}
+
+        if (Input.GetButton("Punch")) 
+            StartCoroutine(Punch());
+    }
+
+    private IEnumerator Punch()
+    {
+        if (isGrounded)
+        {
+            State = CharState.PunchFrontHand;
+            _controlIsLocked = true;
+            yield return new WaitForSeconds(Helper.GetAnimLength(State.ToString(), this.gameObject));
+            _controlIsLocked = false;
+        }
+
+
+        yield return null;
+    }
+
+    /// <summary>
+    ///  Какова продожительность текущей анимации
+    /// </summary>
+    /// <returns></returns>
+    private float CurrentStateLength()
+    {
+        AnimatorClipInfo[] stInfos = animator.GetCurrentAnimatorClipInfo(0);
+        AnimationClip clip = stInfos[0].clip;
+        var length = clip.length;
+
+        return length;
+    }
 
     public void Jump(float jf)
     {
@@ -85,5 +125,6 @@ public enum CharState
 {
     Idle,
     Run,
-    Jump
+    Jump,
+    PunchFrontHand
 }
