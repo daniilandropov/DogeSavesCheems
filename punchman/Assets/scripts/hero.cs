@@ -73,15 +73,15 @@ public class hero : MonoBehaviour
             if (isGrounded)
                 Jump(jumpForce);
 
-        if (Input.GetButton("Punch")) 
-            StartCoroutine(Punch());
+        if (Input.GetButton("Punch")) StartCoroutine(Punch(CharState.PunchFrontHand));
+        if (Input.GetButton("Punch2")) StartCoroutine(Punch(CharState.PunchBackHand));
     }
 
-    private IEnumerator Punch()
+    private IEnumerator Punch(CharState charState)
     {
         if (isGrounded)
         {
-            State = CharState.PunchFrontHand;
+            State = charState;
             _controlIsLocked = true;
             yield return new WaitForSeconds(Helper.GetAnimLength(State.ToString(), this.gameObject));
             _controlIsLocked = false;
@@ -117,7 +117,10 @@ public class hero : MonoBehaviour
         Vector3 direction = transform.right * axis;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 
-        //sprite.flipX = direction.x < 0.0F;
+        if(direction.x < 0.0F)
+            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+        else
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 }
 
@@ -126,5 +129,6 @@ public enum CharState
     Idle,
     Run,
     Jump,
-    PunchFrontHand
+    PunchFrontHand,
+    PunchBackHand
 }
