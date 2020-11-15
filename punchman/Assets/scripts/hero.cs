@@ -5,61 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class hero : MonoBehaviour
+public class hero : character
 {
-    [SerializeField]
-    private int health;
-    [SerializeField]
-    private float speed; 
-    [SerializeField]
-    public float jumpForce;
-
-    private bool isGrounded = false;
-
-    public List<partOfHero> PartsOfHero;
-
-    public List<partOfHero> Legs;
-
-    new private Rigidbody2D rigidbody;
-    private Animator animator;
-    private SpriteRenderer sprite;
-
-    /// <summary>
-    ///  Блокируем управление на момент удара
-    /// </summary>
-    private bool _controlIsLocked = false;
-
-    private void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
-
-    private CharState State
-    {
-        get { return (CharState)animator.GetInteger("State"); }
-        set { animator.SetInteger("State", (int)value); }
-    }
-
-    private void FixedUpdate()
-    {
-        CheckGround();
-    }
-
-    private void CheckGround()
-    {
-        if (Legs.Where(x => x.IsGrounded).Count() > 0)
-            isGrounded = true;
-        else
-            isGrounded = false;
-
-        if (!isGrounded) State = CharState.Jump;
-    }
-
-    public void ReciveDamage(int damage)
-    {
-        health -= damage;
-    }
+    
 
     private void Update()
     {
@@ -68,67 +16,16 @@ public class hero : MonoBehaviour
 
         if (isGrounded) State = CharState.Idle;
 
-        if (Input.GetButton("Horizontal") || Input.GetAxis("Horizontal") != 0) Run(Input.GetAxis("Horizontal"));
+        if (Input.GetButton("Horizontal") || Input.GetAxis("Horizontal") != 0) if(!_inBlock) Run(Input.GetAxis("Horizontal"));
         if (Input.GetButtonDown("Jump"))
             if (isGrounded)
                 Jump(jumpForce);
 
-        if (Input.GetButton("Punch")) StartCoroutine(Punch(CharState.PunchFrontHand));
-        if (Input.GetButton("Punch2")) StartCoroutine(Punch(CharState.PunchBackHand));
+        if (Input.GetButton("Punch")) if (!isGrounded) PunchInTheAir(); else StartCoroutine(Punch(CharState.PunchFrontHand));
+        if (Input.GetButton("Punch2")) if (!isGrounded) PunchInTheAir(); else StartCoroutine(Punch(CharState.PunchBackHand));
+        if (Input.GetButton("Block")) { if (isGrounded) Block(); } else _inBlock = false;
     }
 
-    private IEnumerator Punch(CharState charState)
-    {
-        if (isGrounded)
-        {
-            State = charState;
-            _controlIsLocked = true;
-            yield return new WaitForSeconds(Helper.GetAnimLength(State.ToString(), this.gameObject));
-            _controlIsLocked = false;
-        }
-
-
-        yield return null;
-    }
-
-    /// <summary>
-    ///  Какова продожительность текущей анимации
-    /// </summary>
-    /// <returns></returns>
-    private float CurrentStateLength()
-    {
-        AnimatorClipInfo[] stInfos = animator.GetCurrentAnimatorClipInfo(0);
-        AnimationClip clip = stInfos[0].clip;
-        var length = clip.length;
-
-        return length;
-    }
-
-    public void Jump(float jf)
-    {
-        rigidbody.velocity = Vector3.Scale(rigidbody.velocity, new Vector3(1, 0, 0));
-        rigidbody.AddForce(transform.up * jf, ForceMode2D.Impulse);
-    }
-
-    private void Run(float axis)
-    {
-        if (isGrounded) State = CharState.Run;
-
-        Vector3 direction = transform.right * axis;
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
-
-        if(direction.x < 0.0F)
-            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        else
-            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-    }
+   
 }
 
-public enum CharState
-{
-    Idle,
-    Run,
-    Jump,
-    PunchFrontHand,
-    PunchBackHand
-}
