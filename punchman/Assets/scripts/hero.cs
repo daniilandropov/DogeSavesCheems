@@ -72,7 +72,7 @@ public class hero : MonoBehaviour
 
     private void Run(float axis)
     {
-        if (isGrounded) State = CharState.Run;
+        if (isGrounded) State = CharState.Run3;
 
         Vector3 direction = transform.right * axis;
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
@@ -85,5 +85,7 @@ public enum CharState
 {
     Idle,
     Run,
-    Jump
+    Jump,
+    Run2,
+    Run3,
 }
